@@ -1,0 +1,93 @@
+{
+  "C:\\Users\\Admin\\Documents\\microservices\\user_service": {
+    "versionSfCore": null,
+    "versionFramework": "4.1.5",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeServiceName": null,
+    "servicePath": "C:\\Users\\Admin\\Documents\\microservices\\user_service",
+    "serviceConfigFileName": "serverless.yaml",
+    "service": {
+      "service": "user-service",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs14.x",
+        "environment": {
+          "DB_HOST": "localhost",
+          "DB_USER": "postgres",
+          "DB_PASSWORD": "<REDACTED>",
+          "DB_NAME": "user_database"
+        }
+      },
+      "functions": {
+        "app": {
+          "handler": "app.handler",
+          "events": [
+            {
+              "http": {
+                "path": "/api/users/login",
+                "method": "get"
+              }
+            }
+          ]
+        }
+      },
+      "plugins": [
+        "serverless-offline"
+      ]
+    },
+    "serviceRawFile": "service: user-service\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs14.x\r\n  environment:\r\n    DB_HOST: localhost\r\n    DB_USER: postgres\r\n    DB_PASSWORD: admin123456\r\n    DB_NAME: user_database\r\n\r\nfunctions:\r\n  app:\r\n    handler: app.handler\r\n    events:\r\n      - http:\r\n          path: /api/users/login\r\n          method: get\r\n\r\nplugins:\r\n  - serverless-offline",
+    "command": [
+      "plugin",
+      "install",
+      "serverless-plugin-typescript"
+    ],
+    "options": {},
+    "error": {
+      "message": "AWS credentials missing or invalid. Run \"serverless\" to set up AWS credentials, or learn more in our docs: http://slss.io/aws-creds-setup. Original error from AWS: Could not load credentials from any providers",
+      "code": "AWS_CREDENTIALS_MISSING"
+    },
+    "machineId": "72ce07c2728c5894b8cc79a6a0f4c8bb",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "dc162f0e-ec72-45cc-8cd0-423136b4c851",
+    "orgName": "hoanguet",
+    "userId": "NZQN7CqgFF0tmqmq56",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "hoanguet",
+    "subscription": null,
+    "userEmail": "vuvanhoanguet51@gmail.com",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  },
+  "unknown": {
+    "versionSfCore": null,
+    "versionFramework": "4.1.5",
+    "isWithinCompose": false,
+    "composeOrgName": null,
+    "composeServiceName": null,
+    "command": [],
+    "options": {
+      "version": true
+    },
+    "error": null,
+    "machineId": "72ce07c2728c5894b8cc79a6a0f4c8bb",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}

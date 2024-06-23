@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  user-database:
+    image: postgres:15.3
+    container_name: order_database_pgdb
+    user: postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: order_database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123456
+    volumes:
+      - order_database:/var/lib/postgres
+volumes:
+  order_database:

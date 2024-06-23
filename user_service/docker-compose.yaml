@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  user-database:
+    image: postgres:15.3
+    container_name: user_database_pgdb
+    user: postgres
+    restart: always
+    ports:
+      - "5431:5432"
+    environment:
+      POSTGRES_DB: user_database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123456
+    volumes:
+      - user_database:/var/lib/postgres
+volumes:
+  user_database:

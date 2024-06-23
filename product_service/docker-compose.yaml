@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  product-database:
+    image: postgres:15.3
+    container_name: product_database_pgdb
+    user: postgres
+    restart: always
+    ports:
+      - "5430:5432"
+    environment:
+      POSTGRES_DB: product_database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123456
+    volumes:
+      - product_database:/var/lib/postgres
+volumes:
+  product_database:
