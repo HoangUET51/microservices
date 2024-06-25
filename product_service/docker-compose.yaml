@@ -1,4 +1,6 @@
 version: "3.8"
+networks:
+  product_service_network:
 services:
   product-database:
     image: postgres:15.3
@@ -13,5 +15,26 @@ services:
       POSTGRES_PASSWORD: admin123456
     volumes:
       - product_database:/var/lib/postgres
+    networks:
+      - product_service_network
+  app-product-service:
+    container_name: product-service-be
+    ports:
+      - "4001:4001"
+    build: .
+    networks:
+      - product_service_network
+    environment:
+      APP_PORT: 4001
+      APP_HOST: http://localhost:3000
+      APP_HOST_SERVER: http://localhost:4001
+      DB_HOST: product_database_pgdb
+      DB_PORT: 5432
+      DB_NAME: product_database
+      DB_USERNAME: postgres
+      DB_PASSWORD: admin123456
+      JWT_SECRET_KEY: 1Csq7mXQV7l0Cr5fTBzrC5aLZXFF0CoG
+    depends_on:
+      - product-database
 volumes:
   product_database:

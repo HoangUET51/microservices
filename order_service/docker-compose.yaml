@@ -1,6 +1,8 @@
 version: "3.8"
+networks:
+  order_service_network:
 services:
-  user-database:
+  order-database:
     image: postgres:15.3
     container_name: order_database_pgdb
     user: postgres
@@ -13,5 +15,26 @@ services:
       POSTGRES_PASSWORD: admin123456
     volumes:
       - order_database:/var/lib/postgres
+    networks:
+      - order_service_network
+  app-order-service:
+    container_name: order-service-be
+    ports:
+      - "4002:4002"
+    build: .
+    networks:
+      - order_service_network
+    environment:
+      APP_PORT: 4002
+      APP_HOST: http://localhost:3000
+      APP_HOST_SERVER: http://localhost:4002
+      DB_HOST: order_database_pgdb
+      DB_PORT: 5432
+      DB_NAME: order_database
+      DB_USERNAME: postgres
+      DB_PASSWORD: admin123456
+      JWT_SECRET_KEY: 1Csq7mXQV7l0Cr5fTBzrC5aLZXFF0CoG
+    depends_on:
+      - order-database
 volumes:
   order_database:

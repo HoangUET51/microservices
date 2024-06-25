@@ -1,4 +1,6 @@
 version: "3.8"
+networks:
+  user_service_network:
 services:
   user-database:
     image: postgres:15.3
@@ -13,5 +15,26 @@ services:
       POSTGRES_PASSWORD: admin123456
     volumes:
       - user_database:/var/lib/postgres
+    networks:
+      - user_service_network
+  app-user-service:
+    container_name: user-service-be
+    ports:
+      - "4000:4000"
+    build: .
+    networks:
+      - user_service_network
+    environment:
+      APP_PORT: 4000
+      APP_HOST: http://localhost:3000
+      APP_HOST_SERVER: http://localhost:4000
+      DB_HOST: user_database_pgdb
+      DB_PORT: 5432
+      DB_NAME: user_database
+      DB_USERNAME: postgres
+      DB_PASSWORD: admin123456
+      JWT_SECRET_KEY: 1Csq7mXQV7l0Cr5fTBzrC5aLZXFF0CoG
+    depends_on:
+      - user-database
 volumes:
   user_database:
